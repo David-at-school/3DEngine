@@ -13,6 +13,7 @@ namespace ds
 		std::for_each(systems.begin(), systems.end(), [](auto& system) {system->Startup(); });
 
 		REGISTER_CLASS(Actor);
+		REGISTER_CLASS(PhysicsComponent);
 		REGISTER_CLASS(AudioComponent);
 	}
 

@@ -27,8 +27,7 @@
 #include "Math/MathTypes.h"
 
 // graphics
-#include "Graphics/Renderer.h"
-#include "Graphics/Texture.h"
+#include "Graphics/Material.h"
 
 //resource
 #include "Resource/ResourceSystem.h"
@@ -39,6 +38,7 @@
 
 // component
 #include "Component/AudioComponent.h"
+#include "Component/PhysicsComponent.h"
 
 #define NOMINMAX
 #include <vector>
