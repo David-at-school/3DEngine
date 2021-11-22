@@ -28,6 +28,7 @@
 
 // graphics
 #include "Graphics/Material.h"
+#include "Graphics/VertexIndexBuffer.h"
 
 //resource
 #include "Resource/ResourceSystem.h"

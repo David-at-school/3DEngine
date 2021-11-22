@@ -19,8 +19,6 @@ const float vertices[] =
 	-1.0f,  1.0f, -1.0, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f
 };
 
-
-
 const GLuint indices[] =
 {
 	// front
@@ -61,31 +59,37 @@ int main(int argc, char** argv)
 	program->Link();
 	program->Use();
 
-	// vertex array
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	std::shared_ptr<ds::VertexIndexBuffer> vertexBuffer = engine.Get<ds::ResourceSystem>()->Get<ds::VertexIndexBuffer>("vertex_index_buffer");
+	vertexBuffer->CreateVertexBuffer(sizeof(vertices), 8, (void*)vertices);
+	vertexBuffer->CreateIndexBuffer(GL_UNSIGNED_INT, 36, (void*)indices);
+	vertexBuffer->SetAttribute(0, 3, 8 * sizeof(GL_FLOAT), 0);
+	vertexBuffer->SetAttribute(1,2, 8 * sizeof(GL_FLOAT), 3);
 
-	// create vertex buffer
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
+	//// vertex array
+	//GLuint vao;
+	//glGenVertexArrays(1, &vao);
+	//glBindVertexArray(vao);
 
-	// bind vertex buffer as active buffer
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	//// create vertex buffer
+	//GLuint vbo;
+	//glGenBuffers(1, &vbo);
 
-	GLuint ebo; // element buffer object
-	glGenBuffers(1, &ebo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//// bind vertex buffer as active buffer
+	//glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	// position
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLubyte*)NULL);
-	glEnableVertexAttribArray(0);
+	//GLuint ebo; // element buffer object
+	//glGenBuffers(1, &ebo);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	// color
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLubyte*)(3 * sizeof(GL_FLOAT)));
-	glEnableVertexAttribArray(1);
+	//// position
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLubyte*)NULL);
+	//glEnableVertexAttribArray(0);
+
+	//// color
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLubyte*)(3 * sizeof(GL_FLOAT)));
+	//glEnableVertexAttribArray(1);
 
 	// uv
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLubyte*)(6 * sizeof(GL_FLOAT)));
@@ -103,6 +107,13 @@ int main(int argc, char** argv)
 
 	program->SetUniform("scale", time);
 	program->SetUniform("tint", tint);
+
+	glm::mat4 view{ 1.0f };
+	view = glm::lookAt(glm::vec3{ 0,0,1.1f }, { 0,0,0 }, { 0,1,0 });
+	program->SetUniform("view", view);
+
+	glm::vec3 translate{ 0.0f };
+	float angle = 0;
 
 	bool quit = false;
 	while (!quit)
@@ -126,12 +137,38 @@ int main(int argc, char** argv)
 		engine.Update();
 
 		time += engine.time.deltaTime;
-
 		program->SetUniform("scale", 0.5f);
+
+		if (engine.Get<ds::InputSystem>()->GetKeyState(SDL_SCANCODE_A) == ds::InputSystem::eKeyState::Held)
+		{
+			translate.x -= 1 * engine.time.deltaTime;
+		}
+		if (engine.Get<ds::InputSystem>()->GetKeyState(SDL_SCANCODE_D) == ds::InputSystem::eKeyState::Held)
+		{
+			translate.x += 1 * engine.time.deltaTime;
+		}
+		if (engine.Get<ds::InputSystem>()->GetKeyState(SDL_SCANCODE_W) == ds::InputSystem::eKeyState::Held)
+		{
+			translate.y += 1 * engine.time.deltaTime;
+		}
+		if (engine.Get<ds::InputSystem>()->GetKeyState(SDL_SCANCODE_S) == ds::InputSystem::eKeyState::Held)
+		{
+			translate.y -= 1 * engine.time.deltaTime;
+		}
+
+		angle += engine.time.deltaTime;
+		
+		glm::mat4 model{ 1.0f };
+
+		model = glm::scale(model, glm::vec3{ 0.5f });
+		model = glm::rotate(angle, glm::vec3{ 0,1,0 });
+		model = glm::translate(model, translate);
+		program->SetUniform("model", model);
 
 		engine.Get<ds::Renderer>()->BeginFrame();
 
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		vertexBuffer->Draw(GL_TRIANGLES);
 
 		engine.Get<ds::Renderer>()->EndFrame();
 	}
