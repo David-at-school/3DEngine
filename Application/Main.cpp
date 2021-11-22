@@ -5,19 +5,42 @@
 #include <glm\vec4.hpp>
 #include <glm\vec3.hpp>
 
-// vertices
 const float vertices[] =
 {
-	-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-	 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f
+	// front
+	-1.0f, -1.0f,  1.0, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+	 1.0f, -1.0f,  1.0, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+	 1.0f,  1.0f,  1.0, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+	-1.0f,  1.0f,  1.0, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+	// back
+	-1.0f, -1.0f, -1.0, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+	 1.0f, -1.0f, -1.0, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+	 1.0f,  1.0f, -1.0, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+	-1.0f,  1.0f, -1.0, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f
 };
+
+
 
 const GLuint indices[] =
 {
-	0, 2, 1,
-	0, 3, 2
+	// front
+	0, 1, 2,
+	2, 3, 0,
+	// right
+	1, 5, 6,
+	6, 2, 1,
+	// back
+	7, 6, 5,
+	5, 4, 7,
+	// left
+	4, 0, 3,
+	3, 7, 4,
+	// bottom
+	4, 5, 1,
+	1, 0, 4,
+	// top
+	3, 2, 6,
+	6, 7, 3
 };
 
 int main(int argc, char** argv)
@@ -104,11 +127,11 @@ int main(int argc, char** argv)
 
 		time += engine.time.deltaTime;
 
-		program->SetUniform("scale", std::sin(time));
+		program->SetUniform("scale", 0.5f);
 
 		engine.Get<ds::Renderer>()->BeginFrame();
 
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
 		engine.Get<ds::Renderer>()->EndFrame();
 	}
