@@ -40,6 +40,8 @@
 // component
 #include "Component/AudioComponent.h"
 #include "Component/PhysicsComponent.h"
+#include "Component/CameraComponent.h"
+#include "Component/MeshComponent.h"
 
 #define NOMINMAX
 #include <vector>
