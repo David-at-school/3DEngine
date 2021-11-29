@@ -4,7 +4,7 @@ namespace ds
 {
 	VertexIndexBuffer::~VertexIndexBuffer()
 	{
-		if (ibo != 0) { glDeleteBuffers; }
+		if (ibo != 0) { glDeleteBuffers(1, &ibo); }
 	}
 
 	bool VertexIndexBuffer::Load(const std::string& name, void* null)

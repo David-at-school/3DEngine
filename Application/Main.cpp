@@ -67,22 +67,19 @@ int main(int argc, char** argv)
 	vertexBuffer->CreateVertexBuffer(sizeof(vertices), 8, (void*)vertices);
 	vertexBuffer->CreateIndexBuffer(GL_UNSIGNED_INT, 36, (void*)indices);
 	vertexBuffer->SetAttribute(0, 3, 8 * sizeof(GL_FLOAT), 0);
-	vertexBuffer->SetAttribute(1,3, 8 * sizeof(GL_FLOAT), 3 * sizeof(float));
-
-	// uv
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GL_FLOAT), (GLubyte*)(6 * sizeof(GL_FLOAT)));
-	glEnableVertexAttribArray(2);
+	vertexBuffer->SetAttribute(1, 3, 8 * sizeof(GL_FLOAT), 3 * sizeof(float));
+	vertexBuffer->SetAttribute(2, 2, 8 * sizeof(float), 6 * sizeof(float));
 
 	// texture
 	//ds::Texture texture;
 	//texture.CreateTexture("textures/llama.jpg");
-	auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/llama.jpg");
-	texture->Bind();
+	//auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/llama.jpg");
+	//texture->Bind();
 
-	texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/rocks.png");
-	texture->Bind();
+	//texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/rocks.png");
+	//texture->Bind();
 
-	texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/wood.png");
+	auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/wood.png");
 	texture->Bind();
 
 	// create camera

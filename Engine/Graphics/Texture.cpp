@@ -7,7 +7,7 @@ namespace ds
 {
     Texture::~Texture()
     {
-        glDeleteTextures(1, &texture);
+        glDeleteTextures;
     }
 
     bool Texture::Load(const std::string& name, void* null)
@@ -21,13 +21,13 @@ namespace ds
         unit = unit;
 
         SDL_Surface* surface = IMG_Load(filename.c_str());
-        FlipSurface(surface);
         
         if (surface == nullptr)
         {
             SDL_Log("Failed to create surface: %s", SDL_GetError());
             return false;
         }
+        FlipSurface(surface);
 
         glGenTextures(1, &texture);
         glBindTexture(target, texture);

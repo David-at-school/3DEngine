@@ -4,8 +4,8 @@ namespace ds
 {
 	VertexBuffer::~VertexBuffer()
 	{
-		if (vao != 0) { glDeleteVertexArrays; }
-		if (vbo != 0) { glDeleteBuffers; }
+		if (vao != 0) { glDeleteVertexArrays(1, &vao); }
+		if (vbo != 0) { glDeleteBuffers(1, &vbo); }
 
 	}
 
