@@ -43,6 +43,8 @@
 #include "Component/CameraComponent.h"
 #include "Component/MeshComponent.h"
 
+#include "Component/FreeCameraController.h"
+
 #define NOMINMAX
 #include <vector>
 #include <memory>
