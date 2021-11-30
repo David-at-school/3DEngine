@@ -88,7 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include;$(SolutionDir)ThirdParty\assimp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -97,7 +97,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.14\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\api\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -109,7 +109,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include;$(SolutionDir)ThirdParty\assimp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -120,7 +120,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.14\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\api\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include;$(SolutionDir)ThirdParty\assimp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.14\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\api\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -151,7 +151,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\fmod\api\core\inc;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(ProjectDir);$(SolutionDir)ThirdParty\SDL2-2.0.14\include;$(SolutionDir)ThirdParty\assimp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -162,7 +162,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;fmod_vc.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.14\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\api\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -175,6 +175,7 @@
     <ClCompile Include="Component\FreeCameraController.cpp" />
     <ClCompile Include="Component\LightComponent.cpp" />
     <ClCompile Include="Component\MeshComponent.cpp" />
+    <ClCompile Include="Component\ModelComponent.cpp" />
     <ClCompile Include="Component\PhysicsComponent.cpp" />
     <ClCompile Include="Core\FileSystem.cpp" />
     <ClCompile Include="Core\Json.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Framework\EventSystem.cpp" />
     <ClCompile Include="Graphics\Material.cpp" />
+    <ClCompile Include="Graphics\Model.cpp" />
     <ClCompile Include="Graphics\Program.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\Shader.cpp" />
@@ -204,6 +206,7 @@
     <ClInclude Include="Component\GraphicsComponent.h" />
     <ClInclude Include="Component\LightComponent.h" />
     <ClInclude Include="Component\MeshComponent.h" />
+    <ClInclude Include="Component\ModelComponent.h" />
     <ClInclude Include="Component\PhysicsComponent.h" />
     <ClInclude Include="Core\FileSystem.h" />
     <ClInclude Include="Core\Json.h" />
@@ -216,6 +219,7 @@
     <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Framework\System.h" />
     <ClInclude Include="Graphics\Material.h" />
+    <ClInclude Include="Graphics\Model.h" />
     <ClInclude Include="Graphics\Program.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\Shader.h" />

@@ -79,8 +79,11 @@ int main(int argc, char** argv)
 	//texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/rocks.png");
 	//texture->Bind();
 
-	auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/wood.png");
+	auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/ogre_diffuse.bmp");
 	texture->Bind();
+
+	/*auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/wood.png");
+	texture->Bind();*/
 
 	// create camera
 	{
@@ -109,9 +112,13 @@ int main(int argc, char** argv)
 		actor->name = "cube";
 		actor->transform.position = glm::vec3{ 0, 0, 0 };
 
-		auto component = ds::ObjectFactory::Instance().Create<ds::MeshComponent>("MeshComponent");
+		/*auto component = ds::ObjectFactory::Instance().Create<ds::MeshComponent>("MeshComponent");
 		component->program = engine->Get<ds::ResourceSystem>()->Get<ds::Program>("basic_shader");
-		component->vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexBuffer>("cube_mesh");
+		component->vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexBuffer>("cube_mesh");*/
+
+		auto component = ds::ObjectFactory::Instance().Create<ds::ModelComponent>("ModelComponent");
+		component->program = engine->Get<ds::ResourceSystem>()->Get<ds::Program>("basic_shader");
+		component->model = engine->Get<ds::ResourceSystem>()->Get<ds::Model>("models/ogre.obj");
 
 		actor->AddComponent(std::move(component));
 		scene->AddActor(std::move(actor));

@@ -42,7 +42,7 @@
 #include "Component/PhysicsComponent.h"
 #include "Component/CameraComponent.h"
 #include "Component/MeshComponent.h"
-
+#include "Component/ModelComponent.h"
 #include "Component/FreeCameraController.h"
 
 #define NOMINMAX
