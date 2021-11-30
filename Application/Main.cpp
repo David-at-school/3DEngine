@@ -63,7 +63,7 @@ int main(int argc, char** argv)
 	program->Link();
 	program->Use();
 
-	std::shared_ptr<ds::VertexIndexBuffer> vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexIndexBuffer>("cube_mesh");
+	std::shared_ptr<ds::VertexBuffer> vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexBuffer>("cube_mesh");
 	vertexBuffer->CreateVertexBuffer(sizeof(vertices), 8, (void*)vertices);
 	vertexBuffer->CreateIndexBuffer(GL_UNSIGNED_INT, 36, (void*)indices);
 	vertexBuffer->SetAttribute(0, 3, 8 * sizeof(GL_FLOAT), 0);
@@ -111,7 +111,7 @@ int main(int argc, char** argv)
 
 		auto component = ds::ObjectFactory::Instance().Create<ds::MeshComponent>("MeshComponent");
 		component->program = engine->Get<ds::ResourceSystem>()->Get<ds::Program>("basic_shader");
-		component->vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexIndexBuffer>("cube_mesh");
+		component->vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexBuffer>("cube_mesh");
 
 		actor->AddComponent(std::move(component));
 		scene->AddActor(std::move(actor));
