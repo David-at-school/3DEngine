@@ -5,44 +5,9 @@
 #include <glm\vec4.hpp>
 #include <glm\vec3.hpp>
 
-const float vertices[] =
-{
-	// front
-	-1.0f, -1.0f,  1.0, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-	 1.0f, -1.0f,  1.0, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-	 1.0f,  1.0f,  1.0, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-	-1.0f,  1.0f,  1.0, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-	// back
-	-1.0f, -1.0f, -1.0, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-	 1.0f, -1.0f, -1.0, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-	 1.0f,  1.0f, -1.0, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-	-1.0f,  1.0f, -1.0, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f
-};
-
-const GLuint indices[] =
-{
-	// front
-	0, 1, 2,
-	2, 3, 0,
-	// right
-	1, 5, 6,
-	6, 2, 1,
-	// back
-	7, 6, 5,
-	5, 4, 7,
-	// left
-	4, 0, 3,
-	3, 7, 4,
-	// bottom
-	4, 5, 1,
-	1, 0, 4,
-	// top
-	3, 2, 6,
-	6, 7, 3
-};
-
 int main(int argc, char** argv)
 {
+	// create engine
 	std::unique_ptr<ds::Engine> engine = std::make_unique<ds::Engine>();
 	engine->Startup();
 	engine->Get<ds::Renderer>()->Create("OpenGL", 800, 600);
@@ -54,71 +19,52 @@ int main(int argc, char** argv)
 	ds::SeedRandom(static_cast<unsigned int>(time(nullptr)));
 	ds::SetFilePath("../resources");
 
-	std::shared_ptr<ds::Program> program = engine->Get<ds::ResourceSystem>()->Get<ds::Program>("basic_shader");
-	std::shared_ptr<ds::Shader> vshader = engine->Get<ds::ResourceSystem>()->Get<ds::Shader>("shaders/basic.vert", (void*)GL_VERTEX_SHADER);
-	std::shared_ptr<ds::Shader> fshader = engine->Get<ds::ResourceSystem>()->Get<ds::Shader>("shaders/basic.frag", (void*)GL_FRAGMENT_SHADER);
-
-	program->AddShader(vshader);
-	program->AddShader(fshader);
-	program->Link();
-	program->Use();
-
-	std::shared_ptr<ds::VertexBuffer> vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexBuffer>("cube_mesh");
-	vertexBuffer->CreateVertexBuffer(sizeof(vertices), 8, (void*)vertices);
-	vertexBuffer->CreateIndexBuffer(GL_UNSIGNED_INT, 36, (void*)indices);
-	vertexBuffer->SetAttribute(0, 3, 8 * sizeof(GL_FLOAT), 0);
-	vertexBuffer->SetAttribute(1, 3, 8 * sizeof(GL_FLOAT), 3 * sizeof(float));
-	vertexBuffer->SetAttribute(2, 2, 8 * sizeof(float), 6 * sizeof(float));
-
-	// texture
-	//ds::Texture texture;
-	//texture.CreateTexture("textures/llama.jpg");
-	//auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/llama.jpg");
-	//texture->Bind();
-
-	//texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/rocks.png");
-	//texture->Bind();
-
-	auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/ogre_diffuse.bmp");
-	texture->Bind();
-
-	/*auto texture = engine->Get<ds::ResourceSystem>()->Get<ds::Texture>("textures/wood.png");
-	texture->Bind();*/
-
 	// create camera
 	{
-		auto actor = ds::ObjectFactory::Instance().Create<ds::Actor>("Actor");
+		auto actor = CREATE_ENGINE_OBJECT(Actor);
 		actor->name = "camera";
-		actor->transform.position = glm::vec3{ 0, 0, 10 };
+		actor->transform.position = glm::vec3{ 0, 0, 5 };
+
 		{
-			auto component = ds::ObjectFactory::Instance().Create<ds::CameraComponent>("CameraComponent");
+			auto component = CREATE_ENGINE_OBJECT(CameraComponent);
 			component->SetPerspective(45.0f, 800.0f / 600.0f, 0.01f, 100.0f);
 			actor->AddComponent(std::move(component));
 		}
-
 		{
-			auto component = ds::ObjectFactory::Instance().Create<ds::FreeCameraController>("FreeCameraController");
-			component->speed = 3;
-			component->sensitivity = 0.01f;
+			auto component = CREATE_ENGINE_OBJECT(FreeCameraController);
+			component->speed = 8;
+			component->sensitivity = 0.1f;
 			actor->AddComponent(std::move(component));
 		}
 
 		scene->AddActor(std::move(actor));
 	}
 
-	// create cube
+	// create model
 	{
-		auto actor = ds::ObjectFactory::Instance().Create<ds::Actor>("Actor");
-		actor->name = "cube";
-		actor->transform.position = glm::vec3{ 0, 0, 0 };
+		auto actor = CREATE_ENGINE_OBJECT(Actor);
+		actor->name = "model";
+		actor->transform.position = glm::vec3{ 0 };
+		actor->transform.scale = glm::vec3{ 1 };
 
-		/*auto component = ds::ObjectFactory::Instance().Create<ds::MeshComponent>("MeshComponent");
-		component->program = engine->Get<ds::ResourceSystem>()->Get<ds::Program>("basic_shader");
-		component->vertexBuffer = engine->Get<ds::ResourceSystem>()->Get<ds::VertexBuffer>("cube_mesh");*/
+		auto component = CREATE_ENGINE_OBJECT(ModelComponent);
+		component->model = engine->Get<ds::ResourceSystem>()->Get<ds::Model>("models/cube.obj");
+		component->material = engine->Get<ds::ResourceSystem>()->Get<ds::Material>("materials/wood.mtl", engine.get());
 
-		auto component = ds::ObjectFactory::Instance().Create<ds::ModelComponent>("ModelComponent");
-		component->program = engine->Get<ds::ResourceSystem>()->Get<ds::Program>("basic_shader");
-		component->model = engine->Get<ds::ResourceSystem>()->Get<ds::Model>("models/ogre.obj");
+		actor->AddComponent(std::move(component));
+		scene->AddActor(std::move(actor));
+	}
+
+	// create light
+	{
+		auto actor = CREATE_ENGINE_OBJECT(Actor);
+		actor->name = "light";
+		actor->transform.position = glm::vec3{ 4 };
+
+		auto component = CREATE_ENGINE_OBJECT(LightComponent);
+		component->ambient = glm::vec3{ 0.2f };
+		component->diffuse = glm::vec3{ 1 };
+		component->specular = glm::vec3{ 1 };
 
 		actor->AddComponent(std::move(component));
 		scene->AddActor(std::move(actor));
@@ -151,7 +97,7 @@ int main(int argc, char** argv)
 
 		// update actor
 
-		auto actor = scene->FindActor("cube");
+		auto actor = scene->FindActor("model");
 		if (actor != nullptr)
 		{
 			//actor->transform.position += direction * 5.0f * engine->time.deltaTime;

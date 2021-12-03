@@ -1,6 +1,7 @@
 #pragma once
 
 #define REGISTER_CLASS(CLASS) ds::ObjectFactory::Instance().Register<CLASS>(#CLASS);
+#define CREATE_ENGINE_OBJECT(CLASS) ds::ObjectFactory::Instance().Create<ds::CLASS>(#CLASS);
 
 //audio
 #include "Audio/AudioSystem.h"
@@ -43,6 +44,7 @@
 #include "Component/CameraComponent.h"
 #include "Component/MeshComponent.h"
 #include "Component/ModelComponent.h"
+#include "Component/LightComponent.h"
 #include "Component/FreeCameraController.h"
 
 #define NOMINMAX
