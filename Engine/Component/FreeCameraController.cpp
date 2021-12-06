@@ -34,6 +34,9 @@ namespace ds
 
 	bool FreeCameraController::Read(const rapidjson::Value& value)
 	{
-		return false;
+		JSON_READ(value, speed);
+		JSON_READ(value, sensitivity);
+
+		return true;
 	}
 }

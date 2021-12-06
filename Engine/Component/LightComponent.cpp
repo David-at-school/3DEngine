@@ -34,6 +34,10 @@ namespace ds
 
 	bool LightComponent::Read(const rapidjson::Value& value)
 	{
-		return false;
+		JSON_READ(value, ambient);
+		JSON_READ(value, diffuse);
+		JSON_READ(value, specular);
+
+		return true;
 	}
 }
