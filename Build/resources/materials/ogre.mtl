@@ -14,7 +14,9 @@
     1,
     1
   ],
-  "shader_name": "shaders/effects.shdr",
+  "shader_name": "shaders/phong_normal.shdr",
   "texture_names": [
-    "textures/spot.png"  ]
+    "textures/ogre_diffuse.bmp",
+    "textures/ogre_normal.bmp"
+  ]
 }

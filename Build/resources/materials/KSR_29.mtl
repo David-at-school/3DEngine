@@ -16,5 +16,7 @@
   ],
   "shader_name": "shaders/effects.shdr",
   "texture_names": [
-    "textures/spot.png"  ]
+    "textures/Sniper_KSR_29_Col.jpg",
+    "textures/Sniper_KSR_29_nor.jpg"
+  ]
 }

@@ -2,33 +2,6 @@
   "actors": [
     {
       "type": "Actor",
-      "name": "camera",
-      "tag": "camera",
-      "prototype": false,
-      "transform": {
-        "position": [
-          0,
-          0,
-          5
-        ]
-      },
-      "components": [
-        {
-          "type": "CameraComponent",
-          "fov": 45.0,
-          "aspect_ratio": 1.333,
-          "near": 0.01,
-          "far": 100.0
-        },
-        {
-          "type": "FreeCameraController",
-          "speed": 9,
-          "sensitivity": 0.1
-        }
-      ]
-    },
-    {
-      "type": "Actor",
       "name": "model",
       "tag": "model",
       "prototype": false,
@@ -42,8 +15,35 @@
       "components": [
         {
           "type": "ModelComponent",
-          "model_name": "models/Sniper_Rifle.obj",
-          "material_name": "materials/KSR_29.mtl"
+          "model_name": "models/sphere.obj",
+          "material_name": "materials/bricks.mtl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "camera",
+      "tag": "camera",
+      "prototype": false,
+      "transform": {
+        "position": [
+          0,
+          0,
+          4
+        ]
+      },
+      "components": [
+        {
+          "type": "CameraComponent",
+          "fov": 45,
+          "aspect_ratio": 1.33,
+          "near": 0.1,
+          "far": 1000.0
+        },
+        {
+          "type": "FreeCameraController",
+          "speed": 8,
+          "sensitivity": 0.2
         }
       ]
     },
@@ -55,7 +55,7 @@
       "transform": {
         "position": [
           0,
-          2,
+          0,
           4
         ]
       },
@@ -63,9 +63,9 @@
         {
           "type": "LightComponent",
           "ambient": [
-            0.5,
-            0.5,
-            0.5
+            0.2,
+            0.2,
+            0.2
           ],
           "diffuse": [
             1,

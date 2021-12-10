@@ -62,6 +62,38 @@ namespace ds
 		glAttachShader(program, shader->shader);
 	}
 
+	void Program::DisplayInfo()
+	{
+		GLint count;
+
+		GLint size; // size of the variable
+		GLenum type; // type of the variable (float, vec3 or mat4, etc)
+
+		const GLsizei bufSize = 16; // maximum name length
+		GLchar name[bufSize]; // variable name in GLSL
+		GLsizei length; // name length
+
+		glGetProgramiv(program, GL_ACTIVE_ATTRIBUTES, &count);
+		printf("Active Attributes: %d\n", count);
+
+		for (GLint i = 0; i < count; i++)
+		{
+			glGetActiveAttrib(program, (GLuint)i, bufSize, &length, &size, &type, name);
+
+			printf("Attribute #%d Type: %u Name: %s\n", i, type, name);
+		}
+
+		glGetProgramiv(program, GL_ACTIVE_UNIFORMS, &count);
+		printf("Active Uniforms: %d\n", count);
+
+		for (GLint i = 0; i < count; i++)
+		{
+			glGetActiveUniform(program, (GLuint)i, bufSize, &length, &size, &type, name);
+
+			printf("Uniform #%d Type: %u Name: %s\n", i, type, name);
+		}
+	}
+
 	void Program::Link()
 	{
 		if (linked) return;
@@ -92,6 +124,7 @@ namespace ds
 		else
 		{
 			linked = true;
+			DisplayInfo();
 		}
 	}
 

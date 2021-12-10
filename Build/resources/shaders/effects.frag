@@ -8,6 +8,11 @@
 
     out vec4 outColor;
 
+    float random(float n) // 0 - 1
+{
+    return fract(sin(n) * 43758.5453123);
+}
+
     struct Material
     {
         vec3 diffuse;
@@ -24,6 +29,7 @@
 
     uniform Material material;
     uniform Light light;
+    uniform float time;
 	
     layout (binding = 0) uniform sampler2D color_sample;
     layout (binding = 1) uniform sampler2D normal_sample;
@@ -50,5 +56,9 @@
             specular = material.specular * light.specular * intensity;
         }
 
-        outColor = vec4(ambient + diffuse, 1) * texture(color_sample, fs_in.texcoord) + vec4(specular, 1);
+        vec4 color = vec4(ambient + diffuse, 1) * texture(color_sample, fs_in.texcoord) + vec4(specular, 1);
+        
+        color = vec4(1) - color;
+        //color = color * random(time + gl_FragCoord.x * gl_FragCoord.y);
+        outColor = color;
     }

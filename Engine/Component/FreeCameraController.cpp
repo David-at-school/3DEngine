@@ -37,6 +37,6 @@ namespace ds
 		JSON_READ(value, speed);
 		JSON_READ(value, sensitivity);
 
-		return true;
+		return false;
 	}
 }

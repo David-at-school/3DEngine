@@ -16,6 +16,7 @@ namespace ds
 		bool Load(const std::string& name, void* data) override;
 		void AddShader(const std::shared_ptr<Shader>& shader);
 
+		void DisplayInfo();
 		void Link();
 		void Use();
 

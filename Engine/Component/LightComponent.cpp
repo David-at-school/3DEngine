@@ -15,7 +15,7 @@ namespace ds
 		}
 
 		// get all shaders in the resource system
-		auto shaders = actor->scene->engine->Get<ResourceSystem>()->Get<Program>(); //< using the new Resource System Get() function, get all shaders(Program))
+		auto shaders = owner->scene->engine->Get<ResourceSystem>()->Get<Program>(); //< using the new Resource System Get() function, get all shaders(Program))
 		// set shaders light properties
 		for (auto& shader : shaders)
 		{
@@ -23,7 +23,6 @@ namespace ds
 			shader->SetUniform("light.diffuse", diffuse);
 			shader->SetUniform("light.specular", specular);
 			shader->SetUniform("light.position", position);
-			//<set light diffuse, specular, and position uniforms>
 		}
 	}
 

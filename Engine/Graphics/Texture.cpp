@@ -10,15 +10,16 @@ namespace ds
         glDeleteTextures;
     }
 
-    bool Texture::Load(const std::string& name, void* null)
+    bool Texture::Load(const std::string& name, void* data)
     {
-        return CreateTexture(name);
+        GLuint unit = static_cast<GLuint>(reinterpret_cast<std::uintptr_t>(data));
+        return CreateTexture(name, GL_TEXTURE_2D, unit);
     }
 
     bool Texture::CreateTexture(const std::string& filename, GLenum target, GLuint unit)
     {
-        target = target;
-        unit = unit;
+        this->target = target;
+        this->unit = unit;
 
         SDL_Surface* surface = IMG_Load(filename.c_str());
         
@@ -37,8 +38,10 @@ namespace ds
 
         glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_CLAMP);
-        glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_CLAMP);
+        //glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_CLAMP);
+        //glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_CLAMP);
+        glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
         return true;
     }

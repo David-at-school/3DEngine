@@ -74,5 +74,32 @@
     <None Include="..\Build\resources\scenes\main.scn">
       <Filter>Resource Files\Scenes</Filter>
     </None>
+    <None Include="..\Build\resources\scenes\main2.scn">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
+    <None Include="..\Build\resources\shaders\phong_normal.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\resources\shaders\phong_normal.shdr">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\resources\shaders\phong_normal.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\resources\materials\bricks.mtl">
+      <Filter>Resource Files\Materials</Filter>
+    </None>
+    <None Include="..\Build\resources\shaders\effects.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\resources\shaders\effects.shdr">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\resources\shaders\effects.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\resources\materials\KSR_29.mtl">
+      <Filter>Resource Files\Materials</Filter>
+    </None>
   </ItemGroup>
 </Project>
